@@ -1,3 +1,5 @@
-/target/
-.#*
-*.log
+# Default ignored files
+/shelf/
+/.idea
+/target
+
