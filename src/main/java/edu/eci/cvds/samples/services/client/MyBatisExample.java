@@ -21,8 +21,13 @@ package edu.eci.cvds.samples.services.client;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
+import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
+import edu.eci.cvds.samples.entities.Item;
+import edu.eci.cvds.samples.entities.TipoItem;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -59,7 +64,7 @@ public class MyBatisExample {
      * @param args
      * @throws SQLException 
      */
-    public static void main(String args[]) throws SQLException {
+    public static void main(String args[]) throws SQLException, ParseException {
         SqlSessionFactory sessionfact = getSqlSessionFactory();
 
         SqlSession sqlss = sessionfact.openSession();
@@ -67,6 +72,21 @@ public class MyBatisExample {
         System.out.println(cm.consultarClientes());
         System.out.println("--------------------------");
         System.out.println(cm.consultarCliente(4));
+        System.out.println("--------------------------");
+        cm.agregarItemRentadoACliente(4,2, new SimpleDateFormat("yyyy/MM/dd").parse("2021/03/15"),
+                new SimpleDateFormat("yyyy/MM/dd").parse("2021/03/17"));
+        System.out.println("--------------------------");
+        System.out.println(cm.consultarCliente(4));
+        System.out.println("--------------------------");
+        ItemMapper im = sqlss.getMapper(ItemMapper.class);
+        System.out.println(im.consultarItems());
+        System.out.println("--------------------------");
+        System.out.println(im.consultarItem(2));
+        /*im.insertarItem(new Item(new TipoItem(2,"comidita"),17,"Pollo","Papas de Pollo",
+                new SimpleDateFormat("yyyy/MM/dd").parse("2021/03/15"),5000,"asasdas",
+                "objeto"));*/
+        System.out.println("--------------------------");
+        System.out.println(im.consultarItem(17));
         sqlss.commit();
         sqlss.close();
 
