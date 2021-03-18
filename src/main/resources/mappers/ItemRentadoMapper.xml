@@ -6,7 +6,7 @@
     <resultMap id="ItemRentadoResult" type="ItemRentado">
         <id property="id" column="id"/>
         <result property="fechainiciorenta" column="fechainiciorenta"/>
-        <result property="fechofinrenta" column="fechafinrenta"/>
+        <result property="fechafinrenta" column="fechafinrenta"/>
         <association property="item" javaType="Item" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult" columnPrefix="i."/>
     </resultMap>
 </mapper>

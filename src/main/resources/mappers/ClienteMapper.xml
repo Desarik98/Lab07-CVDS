@@ -13,7 +13,7 @@
         c.email,
         c.vetado,
         ir.id ,
-        ir.fechainiciorenta ,
+        ir.fechainiciorenta,
         ir.fechafinrenta ,
         i.id ,
         i.nombre ,
